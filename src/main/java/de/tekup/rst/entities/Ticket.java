@@ -1,5 +1,38 @@
 package de.tekup.rst.entities;
 
-public class Ticket {
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
+import lombok.Data;
+
+@Entity
+@Data
+public class Ticket {
+      
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	private LocalDateTime dateTime;
+	
+	private int nbCouverts;
+	
+	private double addition;
+	
+	@ManyToOne
+	private TableEntity table;
+	
+	@ManyToOne
+	private Client client;
+	
+	@ManyToMany
+	private List<MetEntity> mets = new ArrayList<>();
 }
